@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cqamwl70biy77"]
 
 [ext_resource type="Script" uid="uid://blhwbtjto6k7q" path="res://character_body_3d.gd" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://cxjeucb0gw3ui" path="res://assets/veritymodel.glb" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://cd77pj7eq5gj1" path="res://assets/arenamodel.glb" id="2_noarx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dhlid"]
 size = Vector3(5, 1, 5)
@@ -8,9 +10,11 @@ size = Vector3(5, 1, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_bvq8u"]
 size = Vector3(5, 1, 5)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bvq8u"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_dhlid"]
+radius = 1.5541488
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_l771n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvq8u"]
+size = Vector3(37.8, 0.5, 40)
 
 [node name="Node3D" type="Node3D" unique_id=50514127]
 
@@ -21,22 +25,39 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_dhlid")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1294291337]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -4.6104302, 0)
 mesh = SubResource("BoxMesh_bvq8u")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=614266027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.225882, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.171058, 0)
 script = ExtResource("1_a202f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1707232789]
-shape = SubResource("CapsuleShape3D_bvq8u")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=1156774676]
-mesh = SubResource("CapsuleMesh_l771n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4212875, 0)
+shape = SubResource("SphereShape3D_dhlid")
+debug_color = Color(0.9810558, 0, 0.37842005, 0.41960785)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1558145361]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7.8976455, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 32.93586, 0)
+fov = 68.4
+near = 0.019
+
+[node name="veritymodel" parent="CharacterBody3D" unique_id=2128449029 instance=ExtResource("2_a0tk4")]
+physics_interpolation_mode = 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1499948901]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.585426, 5.4255795, 0)
-shadow_enabled = true
+transform = Transform3D(0.7834752, 0, -0.621423, 0, 1, 0, 0.621423, 0, 0.7834752, -10.585426, 31.889782, 16.995634)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=2004770656]
+transform = Transform3D(-0.5069884, -0.8008754, 0.3186865, -0.09956136, 0.42166245, 0.9012703, -0.85618347, 0.4252048, -0.29351428, 14.776623, 19.122578, -13.251598)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=227170463]
+
+[node name="arenamodel" parent="RigidBody3D" unique_id=1340289494 instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RigidBody3D/arenamodel" unique_id=1645053326]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=652453358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0500641)
+shape = SubResource("BoxShape3D_bvq8u")
