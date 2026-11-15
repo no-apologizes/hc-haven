@@ -3,19 +3,14 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bc35nirrlyl67"
-path.s3tc="res://.godot/imported/veritymodel_verity.png-8c7828d28aeff7bf551d5ebe98dfa002.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 generator_parameters={
 "md5": "1e8289cdc211a20a07f05ee9b6c8e659"
 }
 
 [deps]
 
-source_file="res://assets/veritymodel_verity.png"
-dest_files=["res://.godot/imported/veritymodel_verity.png-8c7828d28aeff7bf551d5ebe98dfa002.s3tc.ctex"]
+source_file="res://assets/Verity/veritymodel_verity.png"
 
 [params]
 

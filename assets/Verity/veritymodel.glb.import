@@ -3,12 +3,12 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cmdf1jcgamxww"
+uid="uid://b7sedpojxoknj"
 valid=false
 
 [deps]
 
-source_file="res://assets/crueltymodel.glb"
+source_file="res://assets/Verity/veritymodel.glb"
 
 [params]
 

@@ -3,13 +3,12 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxjeucb0gw3ui"
-path="res://.godot/imported/veritymodel.glb-385f5830ca278c61ce60d5b9f77da279.scn"
+uid="uid://dxci1skfmey64"
+valid=false
 
 [deps]
 
-source_file="res://assets/veritymodel.glb"
-dest_files=["res://.godot/imported/veritymodel.glb-385f5830ca278c61ce60d5b9f77da279.scn"]
+source_file="res://assets/Cruelty/crueltymodel.glb"
 
 [params]
 
