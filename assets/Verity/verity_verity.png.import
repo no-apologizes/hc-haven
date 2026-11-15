@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkwu0ymage1o0"
+uid="uid://dylj37unuor26"
 path.s3tc="res://.godot/imported/verity_verity.png-bfe22d0ed72221379685313c9b6ef0a0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "1e8289cdc211a20a07f05ee9b6c8e659"
 }
 
 [deps]

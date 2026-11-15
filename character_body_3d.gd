@@ -10,7 +10,7 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var aim_pivot: Node3D = $AimPivot
-@onready var verity_model: Node3D = $veritymodel
+@onready var verity_model: Node3D = $verity
 
 var is_dragging: bool = false
 
