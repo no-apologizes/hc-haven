@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 @export var max_pull_distance: float = 4.0
 @export var launch_power: float = 8.0
-@export var friction: float = 6.0
+@export var friction: float = 8.0
 @export var min_pull_threshold: float = 0.3
 @export var ball_radius: float = 1.55
 @export var bounciness: float = 1.0 # 1.0 = no speed loss, < 1.0 = loses speed on bounce
-@export var push_force: float = 150.0
+@export var push_force: float = 65.0
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var aim_pivot: Node3D = $AimPivot
@@ -22,7 +22,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			# Allow dragging anytime (remove or adjust velocity.length() check here)
 			var click_pos = get_mouse_ground_position()
 			# Start drag if clicking near the character
 			if click_pos != Vector3.ZERO and click_pos.distance_to(global_position) < 1.5:
@@ -55,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		var collision := get_slide_collision(i)
 		var collider := collision.get_collider()
 		if collider is RigidBody3D:
-			# Push the rigid body away from the character (fixed type & negation)
+			# Push the rigid body away from the character
 			var push_dir: Vector3 = -collision.get_normal()
 			collider.apply_central_impulse(push_dir * push_force)
 
@@ -68,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = bounced.x
 		velocity.z = bounced.z
 
-	# Spin the veritymodel based on movement speed and direction
+	# Spin the verity model based on movement speed and direction
 	spin_model(delta)
 
 

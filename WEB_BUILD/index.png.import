@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clt3tby5x6tl8"
-valid=false
+uid="uid://dpt5w8vwc41pa"
+path="res://.godot/imported/index.png-f8e680a6ffbccae116307f4536c1cf8f.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://T_Obsidian_01_BN.png"
+source_file="res://WEB_BUILD/index.png"
+dest_files=["res://.godot/imported/index.png-f8e680a6ffbccae116307f4536c1cf8f.ctex"]
 
 [params]
 

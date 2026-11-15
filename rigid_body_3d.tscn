@@ -6,6 +6,9 @@
 radius = 1.5941375
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=1417850317]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1166390304]
 shape = SubResource("SphereShape3D_noarx")

@@ -5,8 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://bcwwp1ehuq1yw" path="res://assets/Boing.mp3" id="2_jka67"]
 [ext_resource type="PackedScene" uid="uid://cd77pj7eq5gj1" path="res://assets/arenamodel.glb" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://3h1k7qrqweqf" path="res://assets/Verity/verity.glb" id="3_jka67"]
+[ext_resource type="Texture2D" uid="uid://dylj37unuor26" path="res://assets/Verity/verity_verity.png" id="3_jsk3o"]
 [ext_resource type="Script" uid="uid://qu2cpugug6qe" path="res://camera_follow.gd" id="4_i5arm"]
-[ext_resource type="PackedScene" uid="uid://dqteo6frtea3i" path="res://rigid_body_3d.tscn" id="6_i5arm"]
+[ext_resource type="PackedScene" uid="uid://dxci1skfmey64" path="res://assets/Cruelty/crueltymodel.glb" id="4_r3fl7"]
+[ext_resource type="Script" uid="uid://memhueqes7x6" path="res://kill_walls.gd" id="9_4arys"]
+[ext_resource type="Script" uid="uid://bs4d5loamkifv" path="res://resetbuttonscript.gd" id="10_6iypd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dhlid"]
 radius = 1.6168367
@@ -14,31 +17,52 @@ radius = 1.6168367
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4hbq"]
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jsk3o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6iypd"]
+albedo_texture = ExtResource("3_jsk3o")
 
-[sub_resource type="BoxMesh" id="BoxMesh_r3fl7"]
-material = SubResource("ShaderMaterial_jsk3o")
-size = Vector3(1.105, 0.335, 1)
+[sub_resource type="SphereMesh" id="SphereMesh_jsk3o"]
+material = SubResource("StandardMaterial3D_6iypd")
 
 [sub_resource type="Skin" id="Skin_4arys"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i5arm"]
 radius = 2.4024615
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_noarx"]
+radius = 1.5941375
+
+[sub_resource type="PackedScene" id="PackedScene_jsk3o"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("RigidBody3D", "RigidBody3D", "CollisionShape3D", "CollisionShape3D", "shape", "crueltymodel"),
+"node_count": 3,
+"node_ids": PackedInt32Array(1417850317, 1166390304, 70176397),
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 1073741824, 0, 3, 2, -1, 1, 4, 0, 0, 1073741825, 0, 2147483647, 5, 1, 0, 0),
+"variants": [SubResource("SphereShape3D_noarx"), ExtResource("4_r3fl7")],
+"version": 3
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_l771n"]
 size = Vector3(1, 8.961121, 41.929085)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i5arm"]
-size = Vector3(250, 1, 250)
-
 [sub_resource type="BoxMesh" id="BoxMesh_a0tk4"]
-size = Vector3(48.59371, 1, 1)
+size = Vector3(115.18301, 1, 5.397217)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
 albedo_color = Color(0.47000003, 1, 0.99116665, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvq8u"]
 size = Vector3(40, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_killwall"]
+size = Vector3(2, 8.961121, 41.929085)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i5arm"]
+size = Vector3(250, 1, 250)
 
 [node name="Node3D" type="Node3D" unique_id=50514127]
 
@@ -49,6 +73,7 @@ script = ExtResource("1_a202f")
 [node name="AudioBounce" type="AudioStreamPlayer3D" parent="HeyitsVerity" unique_id=1684167773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.171058, 0)
 stream = ExtResource("2_jka67")
+volume_db = 37.383
 
 [node name="AimPivot" type="Node3D" parent="HeyitsVerity" unique_id=1620393912]
 transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, 0, 0, 0)
@@ -57,7 +82,7 @@ transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, 0, 0
 transform = Transform3D(0.99999905, 0, 0, 0, 1, 0, 0, 0, 0.07419487, -1.8634133, -14.756821, 0.00080140936)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HeyitsVerity" unique_id=1707232789]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5714927, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.78953123, 0)
 shape = SubResource("SphereShape3D_dhlid")
 debug_color = Color(0.9810558, 0, 0.37842005, 0.41960785)
 
@@ -65,15 +90,15 @@ debug_color = Color(0.9810558, 0, 0.37842005, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6159625, 0)
 
 [node name="MoveTrail" type="GPUParticles3D" parent="HeyitsVerity" unique_id=993888234]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002866745, 0.8269849, 0)
-amount = 25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002866745, -0.6473913, 0)
+amount = 20
 lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_g4hbq")
-draw_pass_1 = SubResource("BoxMesh_r3fl7")
+draw_pass_1 = SubResource("SphereMesh_jsk3o")
 draw_skin = SubResource("Skin_4arys")
 
 [node name="verity" parent="HeyitsVerity" unique_id=1588858319 instance=ExtResource("3_jka67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6663384, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8332, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1558145361 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40.049583, 0)
@@ -120,32 +145,7 @@ debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
 [node name="arenamodel" parent="Arena" unique_id=1340289494 instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 script = ExtResource("1_wc5p8")
-cruelty_scene = ExtResource("6_i5arm")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena" unique_id=1629158817]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.503181, 5.0042725, 0.0082941055)
-shape = SubResource("BoxShape3D_l771n")
-debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
-
-[node name="CollisionShape3D20" type="CollisionShape3D" parent="Arena" unique_id=309770767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-shape = SubResource("BoxShape3D_i5arm")
-debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arena" unique_id=981755116]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.369587, 5.0523324, 0.016588211)
-shape = SubResource("BoxShape3D_l771n")
-debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Arena" unique_id=199789657]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.040911794, 5.0358143, -19.40004)
-shape = SubResource("BoxShape3D_l771n")
-debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Arena" unique_id=496835128]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.022816658, 5.0333962, 19.502327)
-shape = SubResource("BoxShape3D_l771n")
-debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+cruelty_scene = SubResource("PackedScene_jsk3o")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Arena" unique_id=262651660]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.777319, 0.6311097, 14.832637)
@@ -192,8 +192,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.546059, 3.2538652, 17.6588
 shape = SubResource("SphereShape3D_i5arm")
 debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
 
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Arena" unique_id=496835128]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.022816658, 5.0333962, 19.502327)
+shape = SubResource("BoxShape3D_l771n")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Arena" unique_id=199789657]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.040911794, 5.0358143, -19.40004)
+shape = SubResource("BoxShape3D_l771n")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arena" unique_id=981755116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.369587, 5.0523324, 0.016588211)
+shape = SubResource("BoxShape3D_l771n")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arena" unique_id=1629158817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.503181, 5.0042725, 0.0082941055)
+shape = SubResource("BoxShape3D_l771n")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
 [node name="Background" type="MeshInstance3D" parent="." unique_id=737550652]
-transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, -10.992937, -57.64874, 0)
+transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, -0.22821999, -55.70752, 22.476837)
 mesh = SubResource("BoxMesh_a0tk4")
 surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
 
@@ -212,5 +232,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.144203, -2.08146, -1.6418
 shape = SubResource("BoxShape3D_bvq8u")
 debug_color = Color(0.9662705, 0.08272535, 0.42128402, 0.41960785)
 
-[node name="verity" type="Node3D" parent="." unique_id=219156806 instance=ExtResource("3_jka67")]
+[node name="verity" parent="." unique_id=219156806 instance=ExtResource("3_jka67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -196.14172, 36.90444, -27.038462)
+
+[node name="KillWalls" type="Area3D" parent="." unique_id=1398924531]
+process_thread_group = 1
+process_thread_group_order = 2
+process_thread_messages = 0
+script = ExtResource("9_4arys")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="KillWalls" unique_id=1645016192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.503181, 5.0042725, 0.0082941055)
+shape = SubResource("BoxShape3D_killwall")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="KillWalls" unique_id=412273403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.369587, 5.0523324, 0.016588211)
+shape = SubResource("BoxShape3D_killwall")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="KillWalls" unique_id=320593586]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.040911794, 5.0358143, -19.40004)
+shape = SubResource("BoxShape3D_killwall")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="KillWalls" unique_id=20176495]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.022816658, 5.0333962, 19.502327)
+shape = SubResource("BoxShape3D_killwall")
+debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
+
+[node name="CollisionShape3D20" type="CollisionShape3D" parent="KillWalls" unique_id=309770767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+shape = SubResource("BoxShape3D_i5arm")
+debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=677496639]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1046124968]
+
+[node name="Button" type="Button" parent="CanvasLayer" unique_id=162000459]
+offset_right = 66.0
+offset_bottom = 64.0
+text = "Reset"
+script = ExtResource("10_6iypd")
+
+[connection signal="body_entered" from="KillWalls" to="KillWalls" method="_on_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_pressed"]
