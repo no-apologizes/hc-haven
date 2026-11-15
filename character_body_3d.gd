@@ -4,16 +4,15 @@ extends CharacterBody3D
 @export var launch_power: float = 8.0
 @export var friction: float = 6.0
 @export var min_pull_threshold: float = 0.3
+@export var ball_radius: float = 1.55
+@export var bounciness: float = 1 # 1.0 = no speed loss, < 1.0 = loses speed on bounce@export var push_force: float = 2.0
+@export var push_force: float = 80.0
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var aim_pivot: Node3D = $AimPivot
-@onready var mesh = $MeshInstance3D
-
-@export var ball_radius: float = 1.55
-
+@onready var verity_model: Node3D = $veritymodel
 
 var is_dragging: bool = false
-var bounceintensity: float = 3.0
 
 func _ready() -> void:
 	aim_pivot.visible = false
@@ -22,7 +21,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			# Only allow dragging when the character is nearly stopped
-			if velocity.length() >= 0:
+			if velocity.length() < 0.2:
 				var click_pos = get_mouse_ground_position()
 				# Start drag if clicking near the character
 				if click_pos != Vector3.ZERO and click_pos.distance_to(global_position) < 1.5:
@@ -50,14 +49,37 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Bounce off wall after move_and_slide() updates collision states
+	for i in get_slide_collision_count(): # ':=' means type-infered variable
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider is RigidBody3D:
+			# Push the rigid body away from the character
+			var push_dir = -collision.get_normal()
+			collider.apply_central_impulse(push_dir * push_force)
+
+	# Bounce off wall after move_and_slide() updates collision states	
 	if is_on_wall():
 		var normal = get_wall_normal()
-		# Reflect the incoming velocity off the wall normal (optional: multiply by 0.9 for energy loss)
-		var bounced = pre_move_velocity.bounce(-normal)
+		var bounced = pre_move_velocity.bounce(normal) * bounciness
+		$AudioBounce.play()
 		velocity.x = bounced.x
 		velocity.z = bounced.z
 	
+	# Spin the veritymodel based on movement speed and direction
+	spin_model(delta)
+
+func spin_model(delta: float) -> void:
+	var horizontal_vel := Vector3(velocity.x, 0.0, velocity.z)
+	var speed := horizontal_vel.length()
+	
+	# Only spin if the ball is actually moving
+	if speed > 0.01 and ball_radius > 0.0:
+		# Find the axis perpendicular to the movement direction
+		var rotation_axis := Vector3.UP.cross(horizontal_vel.normalized()).normalized()
+		# Calculate rotation angle based on distance traveled (distance / radius)
+		var rotation_angle := (speed * delta) / ball_radius
+		
+		verity_model.global_rotate(rotation_axis, rotation_angle)
 
 func get_mouse_ground_position() -> Vector3:
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()

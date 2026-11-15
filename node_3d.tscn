@@ -1,21 +1,27 @@
 [gd_scene format=3 uid="uid://cqamwl70biy77"]
 
 [ext_resource type="Script" uid="uid://blhwbtjto6k7q" path="res://character_body_3d.gd" id="1_a202f"]
-[ext_resource type="PackedScene" uid="uid://b7sedpojxoknj" path="res://assets/Verity/veritymodel.glb" id="2_a0tk4"]
+[ext_resource type="AudioStream" uid="uid://bcwwp1ehuq1yw" path="res://assets/h.mp3" id="2_jka67"]
 [ext_resource type="PackedScene" uid="uid://cd77pj7eq5gj1" path="res://assets/arenamodel.glb" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://3h1k7qrqweqf" path="res://assets/Verity/verity.glb" id="3_jka67"]
+[ext_resource type="PackedScene" uid="uid://dxci1skfmey64" path="res://assets/Cruelty/crueltymodel.glb" id="4_r3fl7"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dhlid"]
-radius = 1.55
+radius = 1.6168367
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g4hbq"]
 gravity = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
 transparency = 1
+albedo_color = Color(0.972549, 0.8235294, 0.15294118, 0.45490196)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r3fl7"]
 material = SubResource("StandardMaterial3D_a0tk4")
 size = Vector3(1.105, 0.335, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i5arm"]
+radius = 2.0590253
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bvq8u"]
 size = Vector3(37.8, 0.5, 40)
@@ -30,26 +36,31 @@ size = Vector3(31.129738, 1, 1)
 albedo_color = Color(0.47000003, 1, 0.99116665, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_noarx"]
-radius = 1.6472855
+radius = 1.6445813
 
 [node name="Node3D" type="Node3D" unique_id=50514127]
 
 [node name="HeyitsVerity" type="CharacterBody3D" parent="." unique_id=614266027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.171058, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6321979, 0)
 script = ExtResource("1_a202f")
 
+[node name="AudioBounce" type="AudioStreamPlayer3D" parent="HeyitsVerity" unique_id=1684167773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.171058, 0)
+stream = ExtResource("2_jka67")
+
 [node name="AimPivot" type="Node3D" parent="HeyitsVerity" unique_id=1620393912]
-transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, 12.550674, -36.73497, 0)
+transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HeyitsVerity/AimPivot" unique_id=92454763]
-transform = Transform3D(0.9999994, 0, 0, 0, 1, 0, 0, 0, 0.07419487, -2.012718, -13.727966, -0.020494727)
+transform = Transform3D(0.99999905, 0, 0, 0, 1, 0, 0, 0, 0.07419487, -1.8634133, -14.756821, 0.00080140936)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HeyitsVerity" unique_id=1707232789]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44430828, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5714927, 0)
 shape = SubResource("SphereShape3D_dhlid")
 debug_color = Color(0.9810558, 0, 0.37842005, 0.41960785)
 
 [node name="Node3D" type="Node3D" parent="HeyitsVerity" unique_id=2072784226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6159625, 0)
 
 [node name="MoveTrail" type="GPUParticles3D" parent="HeyitsVerity" unique_id=993888234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002866745, 0.8269849, 0)
@@ -58,7 +69,7 @@ lifetime = 0.4
 process_material = SubResource("ParticleProcessMaterial_g4hbq")
 draw_pass_1 = SubResource("BoxMesh_r3fl7")
 
-[node name="veritymodel" parent="HeyitsVerity" unique_id=670585124 instance=ExtResource("2_a0tk4")]
+[node name="verity" parent="HeyitsVerity/MoveTrail" unique_id=983650535 instance=ExtResource("3_jka67")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1558145361]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40.049583, 0)
@@ -74,6 +85,11 @@ transform = Transform3D(-0.5069884, -0.8008754, 0.3186865, -0.09956136, 0.421662
 
 [node name="Arena" type="RigidBody3D" parent="." unique_id=227170463]
 freeze = true
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Arena" unique_id=1669405744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.394544, 1.6269326, 17.987856)
+shape = SubResource("SphereShape3D_i5arm")
+debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
 
 [node name="arenamodel" parent="Arena" unique_id=1340289494 instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
@@ -103,18 +119,31 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.02
 shape = SubResource("BoxShape3D_l771n")
 debug_color = Color(0.96738786, 1.347661e-06, 0.47759163, 0.41960785)
 
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Arena" unique_id=262651660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.831085, 1.0468025, 14.526931)
+shape = SubResource("SphereShape3D_i5arm")
+debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Arena" unique_id=1675925179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.118076, 2.2647386, 29.566305)
+shape = SubResource("SphereShape3D_i5arm")
+debug_color = Color(0.97453934, 0, 0.42948666, 0.41960785)
+
 [node name="Background" type="MeshInstance3D" parent="." unique_id=737550652]
 transform = Transform3D(6.6977434, 0, 0, 0, -2.5039146, 0, 0, 0, 140.87062, 12.550674, -32.56391, 0)
 mesh = SubResource("BoxMesh_a0tk4")
 surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
 
 [node name="Label3D" type="Label3D" parent="Background" unique_id=1629265829]
-transform = Transform3D(0.999999, 0, 0, 0, 0.9949191, 0.10068026, 0, -0.10068028, 0.9949192, 0.6498868, -1.3997717, -0.31700635)
+transform = Transform3D(0.999999, 0, 0, 0, 0.9949191, 0.10068026, 0, -0.10068028, 0.9949192, 0, 0, 0)
 pixel_size = 0.01
 text = "Hello Test"
 
-[node name="CrueltyPickup" type="Area3D" parent="." unique_id=287919193]
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=2104995510]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CrueltyPickup" unique_id=663190188]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8525743, 0, -3.639293)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=663190188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.554577, 1.6457957, 0)
 shape = SubResource("SphereShape3D_noarx")
+
+[node name="crueltymodel" parent="RigidBody3D" unique_id=1015265255 instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.554577, 1.6457957, 0)
