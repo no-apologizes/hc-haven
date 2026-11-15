@@ -1,19 +1,19 @@
 extends CharacterBody3D
 
-@export var max_pull_distance: float = 7.0
+@export var max_pull_distance: float = 4.0
 @export var launch_power: float = 8.0
 @export var friction: float = 6.0
 @export var min_pull_threshold: float = 0.3
 
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var aim_pivot: Node3D = $AimPivot
-@onready var mesh = $Node3D
-@onready var move_trail: GPUParticles3D = $MoveTrail
+@onready var mesh = $MeshInstance3D
 
 @export var ball_radius: float = 1.55
 
+
 var is_dragging: bool = false
-var bounceintensity: float = 1.2
+var bounceintensity: float = 3.0
 
 func _ready() -> void:
 	aim_pivot.visible = false
@@ -55,20 +55,9 @@ func _physics_process(delta: float) -> void:
 		var normal = get_wall_normal()
 		# Reflect the incoming velocity off the wall normal (optional: multiply by 0.9 for energy loss)
 		var bounced = pre_move_velocity.bounce(-normal)
-		velocity.x = bounced.x * bounceintensity
-		velocity.z = bounced.z * bounceintensity
+		velocity.x = bounced.x
+		velocity.z = bounced.z
 	
-	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
-	move_trail.emitting = horizontal_velocity.length() > 0.5
-	var distance = horizontal_velocity.length() * delta
-	
-	if distance > 0:
-		var angle_delta = distance / ball_radius
-		
-		var move_direction = horizontal_velocity.normalized()
-		var rotation_axis = Vector3.UP.cross(move_direction)
-		
-		mesh.rotate(rotation_axis.normalized(), angle_delta)
 
 func get_mouse_ground_position() -> Vector3:
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
