@@ -2,11 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q8f8u3tfcr0m"
+uid="uid://b6rhh5pdp5mb8"
 valid=false
-generator_parameters={
-"md5": "9cb70174a31d041c1481f996e68d5cfc"
-}
 
 [deps]
 
@@ -14,7 +11,7 @@ source_file="res://assets/pillowmodel_actualpillow.png"
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -36,4 +33,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

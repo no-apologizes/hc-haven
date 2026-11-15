@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://de8evkgnigsur"
-valid=false
+path="res://.godot/imported/pillowmodel.glb-ae7dec6392ec22cd8b4b138346476ed8.scn"
 
 [deps]
 
 source_file="res://assets/pillowmodel.glb"
+dest_files=["res://.godot/imported/pillowmodel.glb-ae7dec6392ec22cd8b4b138346476ed8.scn"]
 
 [params]
 
