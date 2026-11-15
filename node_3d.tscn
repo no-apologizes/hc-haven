@@ -56,8 +56,6 @@ transform = Transform3D(-0.5069884, -0.8008754, 0.3186865, -0.09956136, 0.421662
 [node name="arenamodel" parent="RigidBody3D" unique_id=1340289494 instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="RigidBody3D/arenamodel" unique_id=1645053326]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=652453358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.0500641)
 shape = SubResource("BoxShape3D_bvq8u")
