@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dqteo6frtea3i"]
+
+[ext_resource type="PackedScene" uid="uid://dxci1skfmey64" path="res://assets/Cruelty/crueltymodel.glb" id="1_mvxmr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_noarx"]
+radius = 1.5941375
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=1417850317]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1166390304]
+shape = SubResource("SphereShape3D_noarx")
+
+[node name="crueltymodel" parent="." unique_id=70176397 instance=ExtResource("1_mvxmr")]
